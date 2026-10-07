@@ -1,0 +1,23 @@
+[project]
+name = "nautobot-example-jobs"
+version = "0.1.0"
+description = "Example Nautobot Jobs, loaded into Nautobot as a Git repository."
+requires-python = ">=3.10"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "nautobot>=2.0",
+    "ruff",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["D", "E", "F", "I", "W"]
+ignore = ["D106"]  # Job Meta classes don't need docstrings
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
