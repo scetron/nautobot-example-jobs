@@ -5,13 +5,14 @@ Example [Nautobot Jobs](https://docs.nautobot.com/projects/core/en/stable/develo
 ## Layout
 
 ```
+__init__.py            # Required: Nautobot imports the repository root as a package
 jobs/
 ├── __init__.py        # Imports each job module so Nautobot discovers it
 ├── hello_world.py     # Minimal job with input variables
 └── device_report.py   # Read-only report against Device data
 ```
 
-Nautobot only looks at the `jobs/` package in a Git repository. Every module in it must call `register_jobs(...)`, and must also be imported in `jobs/__init__.py`.
+Nautobot imports the repository root as a Python package named after the Git repository's slug, then loads its `jobs` submodule. Both the root `__init__.py` and `jobs/__init__.py` must exist. Without the root one, Nautobot skips the repository and reports "No jobs were registered". Every module in `jobs/` must call `register_jobs(...)`, and must also be imported in `jobs/__init__.py`.
 
 ## Loading into Nautobot
 
